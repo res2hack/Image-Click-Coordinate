@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html>
+<head>
+</head>
+<body>
+<form name="pointform" method="post">
+<div id="pointer_div" onclick="point_it(event)"><i id="cross" class="fa fa-times"></i></div>
+You pointed on x = <input type="text" name="form_x" size="4" /> - y = <input type="text" name="form_y" size="4" />
+</form>
+<style>
+#pointer_div {
+	background-image: url('http://www.emanueleferonato.com/images/sun.jpg');
+	width: 500px;
+	height: 333px;
+}
+#cross {
+	position: relative;
+	visibility: hidden;
+	z-index: 2;
+	color: white;
+	font-size: 14px;
+}
+</style>
+<script>
+function point_it(event){
+	pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
+	pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
+	document.getElementById("cross").style.left = (pos_x - 6).toString() + "px";
+	document.getElementById("cross").style.top = (pos_y - 10).toString() + "px";
+	document.getElementById("cross").style.visibility = "visible" ;
+	document.pointform.form_x.value = pos_x;
+	document.pointform.form_y.value = pos_y;
+}
+</script>
+</body>
